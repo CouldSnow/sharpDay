@@ -1,0 +1,44 @@
+
+application:
+  version: v1.0
+
+server:
+  port: 8090
+
+spring:
+  ##数据源
+  profiles:
+    active: druid
+  ##热部署,去掉不需要重新启动的
+  devtools:
+    add-properties: false
+    restart:
+      exclude: static/**,public/**
+  ##配置thymeleaf
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+##Mybaties
+mybatis:
+  type-aliases-package: com.zy
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  config-location: classpath:mapper/mybatis-config.xml
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+##自定义值
+custom:
+  field:
+    message: this is custom field
+
