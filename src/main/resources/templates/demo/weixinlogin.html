@@ -6,14 +6,9 @@
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
 </head>
 <body>
-    <h1><b th:text="${name}"/>,你好</h1>
+    <h1>微信登陆页</h1>
 </body>
 <script th:inline="javascript">
-    //如果用户为admin，跳转到/demo，如果不是显示该页
-    var name = [[${name}]]
-    if(name=="admin"){
-        window.location.href="/demo"
-    }
 
 </script>
 </html>

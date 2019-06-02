@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/plugins/wangEdit/wangEditor.js}"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=zDs1tmrvchAwxbUVjOpsX4rhAO4rBz3x" type="text/javascript"></script>
+</head>
+
+<body>
+    <p>wangEitor 测试页面</p>
+
+    <div id="location">
+
+    </div>
+
+    <div id="weather" >
+        天气：<span th:text="${weather.weather}"></span>
+        <!--地址：<span th:text="${weather.cityName}"></span>-->
+        <!--IP:   <span th:text="${host}"></span>-->
+        日期：<span th:text="${date}"></span>
+    </div>
+
+
+
+    <button id="btn1">获取html</button>
+    <button id="btn2">获取text</button>
+
+    <div id="editor">
+
+    </div>
+
+</body>
+<script th:inline="javascript">
+
+    function init(){
+        //创建一个编辑器
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        editor.create()
+        //用js设置内容
+        //editor.txt.html('<p>用js设置的内容</p><p>fsfldsjfkls;f</p><p>slfjslfjslf</p><p>slfns.fklsfjskl;fjs</p><p>少了几分深刻理解佛i司法解释发&nbsp;<span style="background-color: rgb(241, 241, 241);">public class Test{</span></p><pre><code>  public static void main(String[] args){<br><br>}<br><br>}</code></pre><p><br></p>')
+        //获取内容
+        $('#btn1').click(function () {
+            alert(editor.txt.html())
+        })
+        $('#btn2').click(function () {
+            alert(editor.txt.text())
+        })
+    }
+ //百度地图根据浏览器定位
+    function getlocation(){
+        var geolocation = new BMap.Geolocation();
+        var geoc = new BMap.Geocoder();
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                //alert('您的位置：'+r.point.lng+','+r.point.lat);
+
+                geoc.getLocation(r.point,function(rs){
+                    var addComp = rs.addressComponents;
+                   // $('#location').text("坐标："+r.point.lng+","+r.point.lat+"地址:"+addComp.city)
+                    $('#location').text("地址: "+addComp.city)
+                })
+            }
+            else {
+                alert('failed'+this.getStatus());
+            }
+        },{enableHighAccuracy: true})
+    }
+
+
+
+    window.onload = function () {
+        getlocation()
+        init()
+    }
+
+</script>
+</html>
