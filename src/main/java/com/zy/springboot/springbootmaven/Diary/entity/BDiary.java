@@ -1,5 +1,6 @@
 package com.zy.springboot.springbootmaven.Diary.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class BDiary {
 
     private String address;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdate;
 
     private String week;
