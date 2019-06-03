@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}) // 配置多数据源时如果不配置这一个会造成循环自动注入
-@MapperScan("com.zy.springboot.springbootmaven.Demo.mapper")
+@MapperScan("com.zy.springboot.springbootmaven") //要扫描到mapper
 @EnableAspectJAutoProxy(proxyTargetClass = true) //打开自动注解 默认时true
 public class SpringbootMavenApplication {
 

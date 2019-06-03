@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.springboot.springbootmaven.Diary.mapper.BDiaryMapper" >
+  <resultMap id="BaseResultMap" type="com.zy.springboot.springbootmaven.Diary.entity.BDiary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="weather" property="weather" jdbcType="VARCHAR" />
+    <result column="mood" property="mood" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="week" property="week" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="context" property="context" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from b_diary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zy.springboot.springbootmaven.Diary.entity.BDiary" >
+    insert into b_diary (id, weather, mood, 
+      address, createDate, week, 
+      title, status, context
+      )
+    values (#{id,jdbcType=INTEGER}, #{weather,jdbcType=VARCHAR}, #{mood,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{week,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{context,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zy.springboot.springbootmaven.Diary.entity.BDiary" >
+    update b_diary
+    set weather = #{weather,jdbcType=VARCHAR},
+      mood = #{mood,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      week = #{week,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, weather, mood, address, createDate, week, title, status, context
+    from b_diary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, weather, mood, address, createDate, week, title, status, context
+    from b_diary
+  </select>
+</mapper>
