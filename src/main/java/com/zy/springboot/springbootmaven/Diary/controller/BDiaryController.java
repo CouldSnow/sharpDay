@@ -52,8 +52,7 @@ public class BDiaryController {
     @PostMapping("/insertDiaryData")
     @ResponseBody
     public int insertDiaryData(@RequestBody()BDiary bDiary){
-        System.out.println(bDiary);
-        int id = bDiaryService.insert(bDiary);
-        return id;
+        int count = bDiaryService.insert(bDiary);
+        return bDiary.getId();
     }
 }

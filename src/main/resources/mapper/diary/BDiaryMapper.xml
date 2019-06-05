@@ -16,7 +16,7 @@
     delete from b_diary
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zy.springboot.springbootmaven.Diary.entity.BDiary" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.zy.springboot.springbootmaven.Diary.entity.BDiary" >
     insert into b_diary (id, weather, mood, 
       address, createDate, week, 
       title, status, context

@@ -63,7 +63,7 @@
                  'createdate':$('#date').text(),
                  'week':$('#week').text(),
                  'title':$('#title').val(),
-                 'context':editor.txt.text()
+                 'context':editor.txt.html()
              }
              $.ajax({
                  url:"/diary/insertDiaryData",
@@ -72,7 +72,7 @@
                  data:JSON.stringify(data),
                  contentType:"application/json",
                  success:function(data){
-                 alert("request success ! ");
+                 console.log(data)
              }
          });
          })
