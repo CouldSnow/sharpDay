@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}) // 配置多数据源时如果不配置这一个会造成循环自动注入
 @MapperScan("com.zy.springboot.springbootmaven") //要扫描到mapper
 @EnableAspectJAutoProxy(proxyTargetClass = true) //打开自动注解 默认时true
+//@EnableScheduling
 public class SpringbootMavenApplication {
 
     public static void main(String[] args) {

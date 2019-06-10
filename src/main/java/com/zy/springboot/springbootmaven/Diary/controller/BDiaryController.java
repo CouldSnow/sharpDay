@@ -6,6 +6,7 @@ import com.zy.springboot.springbootmaven.Diary.service.impl.BDiaryServiceImpl;
 import com.zy.springboot.springbootmaven.utils.DateHelper;
 import com.zy.springboot.springbootmaven.utils.WeatherHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +55,18 @@ public class BDiaryController {
     public int insertDiaryData(@RequestBody()BDiary bDiary){
         int count = bDiaryService.insert(bDiary);
         return bDiary.getId();
+    }
+
+
+    /**
+     * 定时任务，发送短信
+     */
+    @Scheduled(cron = "0/2 * * * * ?")
+    public void sendMessage(){
+        int index = bDiaryService.selectTodayDiary();
+        if(index == 0){ //没有写
+                //调用短信接口
+            System.out.println("111111111111111111111111111111111111111111111111111111111111");
+        }
     }
 }

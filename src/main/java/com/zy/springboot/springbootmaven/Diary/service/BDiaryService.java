@@ -18,4 +18,6 @@ public interface BDiaryService {
     List<BDiary> selectAll();
 
     int updateByPrimaryKey(BDiary record);
+
+    int selectTodayDiary();
 }

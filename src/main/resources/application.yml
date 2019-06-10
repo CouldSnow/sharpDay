@@ -41,4 +41,7 @@ pagehelper:
 custom:
   field:
     message: this is custom field
-
+##打印sql日志
+logging:
+  level:
+    com.zy.springboot.springbootmaven.Diary.mapper: DEBUG

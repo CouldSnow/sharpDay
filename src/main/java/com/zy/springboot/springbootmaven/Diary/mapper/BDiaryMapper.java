@@ -13,4 +13,6 @@ public interface BDiaryMapper {
     List<BDiary> selectAll();
 
     int updateByPrimaryKey(BDiary record);
+
+    int selectTodayDiary();
 }

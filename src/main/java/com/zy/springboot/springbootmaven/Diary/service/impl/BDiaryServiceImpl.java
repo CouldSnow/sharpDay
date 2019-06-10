@@ -42,4 +42,9 @@ public class BDiaryServiceImpl implements BDiaryService {
     public int updateByPrimaryKey(BDiary record) {
         return bDiaryMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int selectTodayDiary() {
+        return bDiaryMapper.selectTodayDiary();
+    }
 }

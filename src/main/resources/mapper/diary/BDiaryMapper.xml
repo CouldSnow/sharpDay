@@ -47,4 +47,9 @@
     select id, weather, mood, address, createDate, week, title, status, context
     from b_diary
   </select>
+
+  <select id="selectTodayDiary" resultType="java.lang.Integer">
+     select count(id) from b_diary where createDate = date_format(now(),'%Y-%m-%d');
+
+  </select>
 </mapper>
