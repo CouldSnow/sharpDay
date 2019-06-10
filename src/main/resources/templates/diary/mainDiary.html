@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/plugins/bootstrap/js/bootstrap.js}"></script>
+    <link th:href="@{/plugins/bootstrap/css/bootstrap.css}"  rel="stylesheet"/>
+    <link th:href="@{/css/mycss.css}"  rel="stylesheet"/>
+</head>
+<body>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">写日记</button>
+
+<div id="model" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+           <iframe src="/diary/addDiary" width="100%" height="550px"></iframe>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script th:inline="javascript">
+  function close(){
+      $('#model').modal('hide')
+  }
+</script>
+</html>

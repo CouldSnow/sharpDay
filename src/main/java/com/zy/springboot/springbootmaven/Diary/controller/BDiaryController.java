@@ -45,6 +45,11 @@ public class BDiaryController {
         return "diary/addDiary";
     }
 
+    @GetMapping("/mainDiary")
+    public String toMainDiary(){
+        return "diary/mainDiary";
+    }
+
     /**
      * 添加新的日记
      * @param bDiary
@@ -60,13 +65,16 @@ public class BDiaryController {
 
     /**
      * 定时任务，发送短信
+     * 每天22点5分触发
      */
-    @Scheduled(cron = "0/2 * * * * ?")
+    @Scheduled(cron = "0 5 22 * * ?")
     public void sendMessage(){
         int index = bDiaryService.selectTodayDiary();
         if(index == 0){ //没有写
                 //调用短信接口
             System.out.println("111111111111111111111111111111111111111111111111111111111111");
+        }else{
+            System.out.println("触发定时器任务");
         }
     }
 }
