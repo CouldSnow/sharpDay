@@ -5,60 +5,66 @@
     <title>Title</title>
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/plugins/wangEdit/wangEditor.js}"></script>
+    <script th:src="@{/plugins/bootstrap/js/bootstrap.js}"></script>
+    <script th:src="@{/plugins/toastr/toastr.js}"></script>
     <script src="http://api.map.baidu.com/api?v=2.0&ak=zDs1tmrvchAwxbUVjOpsX4rhAO4rBz3x" type="text/javascript"></script>
+    <link th:href="@{/plugins/bootstrap/css/bootstrap.css}"  rel="stylesheet"/>
+    <link th:href="@{/css/mycss.css}"  rel="stylesheet"/>
+    <link th:href="@{/plugins/toastr/toastr.css}"  rel="stylesheet"/>
 </head>
 
-<body>
-<p>wangEitor 测试页面</p>
+<body class="bg">
+<!--顶部-->
+<nav class="navbar  nav-bg " role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header navbar-right">
+            <span class="navbar-brand span-font-color" id="location" ></span>
+            <span class="navbar-brand span-font-color" th:id="wt" th:text="${weather.weather}"></span>
+            <span class="navbar-brand span-font-color" th:id="week" th:text="${week}"></span>
+            <span class="navbar-brand span-font-color" th:id="date" th:text="${date}"></span>
+        </div>
 
-<div >
-   地址：<span id="location" ></span>
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <input th:id="title" class="form-control input-lg" type="text" placeholder="为勤劳的一天来句总结吧">
+        </div>
+        <div class="col-md-12 top-buffer">
+            <div th:id="editor" class="white-bg"></div>
+        </div>
+        <div class="col-md-2 col-md-offset-10 top-buffer">
+           <!-- <input  type="radio" name="mood" value="1">高兴
+            <input  type="radio" name="mood" value="2">一般
+            <input  type="radio" name="mood" value="3">不高兴-->
+            <input type="button" th:id="cancelBtn" class="btn btn-danger right" value="取消">
+            <input type="button" th:id="submitBtn" class="btn btn-success right" value="提交">
+        </div>
+    </div>
+
 </div>
 
-<div >
-    天气：<span th:id="wt" th:text="${weather.weather}"></span>
-    <!--地址：<span th:text="${weather.cityName}"></span>-->
-    <!--IP:   <span th:text="${host}"></span>-->
-    日期：<span th:id="date" th:text="${date}"></span> <span th:id="week" th:text="${week}"></span>
-    <br>
-    心情：<input type="radio" name="mood" value="1">高兴
-          <input type="radio" name="mood" value="2">一般
-          <input type="radio" name="mood" value="3">失落
-
-</div>
-
-
-
-<button id="btn1">获取html</button>
-<button id="btn2">获取text</button>
-
-<input type="text" th:id="title"/>
-<div id="editor">
-
-</div>
-<div>
-    <input type="button" id="submitBtn" value="提交">
-</div>
 </body>
 <script th:inline="javascript">
+
+    //通知提示框
+    toastr.options.positionClass = 'toast-bottom-left';
+
      function init() {
          //创建一个编辑器
          var E = window.wangEditor
          var editor = new E('#editor')
          editor.create()
+
          //用js设置内容
          //editor.txt.html('<p>用js设置的内容</p><p>fsfldsjfkls;f</p><p>slfjslfjslf</p><p>slfns.fklsfjskl;fjs</p><p>少了几分深刻理解佛i司法解释发&nbsp;<span style="background-color: rgb(241, 241, 241);">public class Test{</span></p><pre><code>  public static void main(String[] args){<br><br>}<br><br>}</code></pre><p><br></p>')
          //获取内容
-         $('#btn1').click(function () {
-             alert(editor.txt.html())
-         })
-         $('#btn2').click(function () {
-             alert(editor.txt.text())
-         })
          $('#submitBtn').click(function () {
              var data={
                  'weather':$('#wt').text(),
-                 'mood':$("input[name='mood']:checked").val(),
+                 //'mood':$("input[name='mood']:checked").val(),
                  'address':$('#location').text(),
                  'createdate':$('#date').text(),
                  'week':$('#week').text(),
@@ -72,7 +78,7 @@
                  data:JSON.stringify(data),
                  contentType:"application/json",
                  success:function(data){
-                 console.log(data)
+                 toastr.success("添加成功")
              }
          });
          })
@@ -102,6 +108,8 @@
         getlocation()
         init()
     }
+
+
 
 
 

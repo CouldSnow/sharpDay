@@ -1,0 +1,30 @@
+.bg{
+    background:url("/image/53.jpg") no-repeat center;
+    /*background-size:contain;*/
+}
+
+.nav-bg{
+    background-color: rgba(0,0,0,0.4);
+}
+
+.span-font-color{
+    color:white;
+}
+
+.top-buffer {
+    margin-top:20px;
+}
+
+/*这里是自定义编辑器高度*/
+.w-e-text-container {
+    height: 400px !important;
+}
+
+.right{
+    float:right;
+    margin-left:10px;
+}
+
+.white-bg{
+    background:white; !important;
+}
