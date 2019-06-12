@@ -4,6 +4,7 @@ import com.zy.springboot.springbootmaven.CommonUtils.CustomUtils;
 import com.zy.springboot.springbootmaven.Demo.Entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 @Configuration
 public class MyConfigure {
@@ -13,6 +14,12 @@ public class MyConfigure {
       CustomUtils customUtils = new CustomUtils();
       return customUtils;
   }
+
+  @Bean
+  public ThreadPoolTaskScheduler getThreadPoolScheduler(){
+      return new ThreadPoolTaskScheduler();
+  }
+
 
  /* @Bean("user")
     public User getUser(){
